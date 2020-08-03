@@ -1,0 +1,28 @@
+project_name: ccidr
+release:
+  github:
+    owner: runoncloud
+    name: ccidr
+builds:
+  - id: ccidr
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - "386"
+    env:
+      - CGO_ENABLED=0
+      - GO111MODULE=on
+    main: cmd/main.go
+    ldflags: -s -w
+      -X github.com/runoncloud/ccidr/pkg/version.version=
+archives:
+  - id: ccidr
+    builds:
+      - ccidr
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
