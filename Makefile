@@ -6,7 +6,7 @@ test:
 
 .PHONY: bin
 bin: fmt vet
-	go build -o bin/ccidr github.com/runoncloud/ccidr/cmd
+	go build -o bin/ccidr github.com/runoncloud/ccidr/cmd/ccidr
 
 .PHONY: fmt
 fmt:

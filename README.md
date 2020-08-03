@@ -42,6 +42,10 @@ The IP address ranges for each cloud are included in the binaries. A new version
   ```
 ## Installation
 
+### The Go Get way
+ ```bash
+ go get -u github.com/runoncloud/ccidr/cmd/ccidr
+ ```
 ### Binaries
  
 #### OSX
