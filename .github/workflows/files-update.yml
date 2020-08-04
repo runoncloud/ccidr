@@ -28,6 +28,7 @@ jobs:
           wget "https://download.microsoft.com/download/7/1/D/71D86715-5596-4529-9B13-DA13A5DE5B63/ServiceTags_Public_$monday.json" -N -O files/azure.json
       - name: Generate statik file
         run: |
+          export PATH=${PATH}:`go env GOPATH`/bin
           go get github.com/rakyll/statik
           statik -src=/files -dest=/pkg/ccidr -f
       - name: Commit new files
