@@ -24,7 +24,7 @@ jobs:
           go get github.com/rakyll/statik
           statik -src=/files -dest=/pkg/ccidr -f
       - name: Commit new files
-      - uses: EndBug/add-and-commit@v4
+        uses: EndBug/add-and-commit@v4
         with:
           add: '.'
           author_name: Jean-Philippe Bond
