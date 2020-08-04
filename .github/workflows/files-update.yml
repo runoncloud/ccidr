@@ -1,7 +1,10 @@
 name: files-update
 on:
-  schedule:
-    - cron:  '0 18 * * 1'
+  push:
+    tags:
+      - '*'
+  #schedule:
+  #  - cron:  '0 18 * * 1'
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
