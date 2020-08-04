@@ -4,7 +4,7 @@ on:
     tags:
       - 'test-*'
 jobs:
-  goreleaser:
+  files-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,7 +18,7 @@ jobs:
           wget 'https://ip-ranges.amazonaws.com/ip-ranges.json' -N -O files/aws.json
       - name: Download Azure JSON
         run: |
-          wget "https://download.microsoft.com/download/7/1/D/71D86715-5596-4529-9B13-DA13A5DE5B63/ServiceTags_Public_$(date -v-monday +%Y%m%d).json" -N -O files/azure.json
+          wget "https://download.microsoft.com/download/7/1/D/71D86715-5596-4529-9B13-DA13A5DE5B63/ServiceTags_Public_$(date -dmonday +%Y%m%d).json" -N -O files/azure.json
       - name: Generate statik file
         run: |
           go get github.com/rakyll/statik
