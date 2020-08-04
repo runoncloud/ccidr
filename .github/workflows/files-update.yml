@@ -30,7 +30,7 @@ jobs:
         run: |
           export PATH=${PATH}:`go env GOPATH`/bin
           go get github.com/rakyll/statik
-          statik -src=/files -dest=/pkg/ccidr -f
+          statik -src=files -dest=pkg/ccidr -f
       - name: Commit new files
         uses: EndBug/add-and-commit@v4
         with:
