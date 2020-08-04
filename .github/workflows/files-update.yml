@@ -32,9 +32,10 @@ jobs:
           go get github.com/rakyll/statik
           statik -src=files -dest=pkg/ccidr -f
       - name: Generate tag name
+        id: gentag
         run: |
-          tagName=$(echo 'v1.0.2'  | awk -F. -v OFS=. '{$NF++;print}')
-          echo "::set-env tagName=$tagName"
+          tagName=$(echo 'v1.0.1'  | awk -F. -v OFS=. '{$NF++;print}')
+          echo "::set-output name=tag_name::$tagName"
       - name: Commit new files
         uses: EndBug/add-and-commit@v4
         with:
@@ -42,6 +43,6 @@ jobs:
           author_name: Jean-Philippe Bond
           author_email: jeanp.bond.dev@gmail.com
           message: 'Update Public Cloud JSON files'
-          tag: ${tagName}
+          tag: ${{ steps.gentag.outputs.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
