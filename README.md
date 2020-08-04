@@ -52,20 +52,16 @@ The IP address ranges for each cloud are included in the binaries. A new version
  
 #### OSX
  ```bash
- curl -L -o ccidr.gz https://github.com/runoncloud/ccidr/releases/download/v1.0.0/ccidr_darwin_amd64.tar.gz && \
+ latestVersion=$(curl --silent "https://api.github.com/repos/runoncloud/ccidr/releases/latest" | jq -r .tag_name) && \
+   curl -L -o ccidr.gz https://github.com/runoncloud/ccidr/releases/download/$latestVersion/ccidr_darwin_amd64.tar.gz && \
    tar zxvf ccidr.gz && chmod +x ccidr && mv ccidr $GOPATH/bin/
  ```
  
 #### Linux
  ```bash
- curl -L -o ccidr.gz https://github.com/runoncloud/ccidr/releases/download/v1.0.0/ccidr_linux_amd64.tar.gz && \
+ latestVersion=$(curl --silent "https://api.github.com/repos/runoncloud/ccidr/releases/latest" | jq -r .tag_name) &&
+   curl -L -o ccidr.gz https://github.com/runoncloud/ccidr/releases/download/$latestVersion/ccidr_linux_amd64.tar.gz && \
    tar zxvf ccidr.gz && chmod +x ccidr && mv ccidr $GOPATH/bin/
- ```
-
-#### Windows
-
- ```
- https://github.com/runoncloud/ccidr/releases/download/v1.0.0/ccidr_windows_amd64.zip
  ```
 
 ### From source
@@ -76,5 +72,5 @@ Requirements:
  - git
  
  ```bash
- make bin   # binaries will be placed in bin/
+ make bin        # binaries will be placed in bin/
  ```
