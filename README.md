@@ -1,4 +1,5 @@
 # ccidr
+![build](https://github.com/runoncloud/ccidr/workflows/build/badge.svg?branch=master)
 ![release](https://github.com/runoncloud/ccidr/workflows/release/badge.svg)
 
 `ccidr` is a command line tool written in Go that help you get and filter Public Cloud IP address ranges.
