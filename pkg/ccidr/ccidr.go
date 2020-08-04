@@ -8,7 +8,20 @@ import (
 	"os"
 )
 
+const (
+	RegionsArg  = "regions"
+	ServicesArg = "services"
+	IpsArg      = "ips"
+	AzureArg    = "azure"
+	AWSArgs     = "aws"
+)
+
 func RunCommand(cmd *cobra.Command, args []string) error {
+	if len(args) == 0 {
+		printsCloudCommands()
+		return nil
+	}
+
 	regionParam, _ := getFlagString(cmd, "region")
 	serviceParam, _ := getFlagString(cmd, "service")
 
@@ -17,12 +30,17 @@ func RunCommand(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
+	if len(args) == 1 {
+		printsResourceCommands()
+		return nil
+	}
+
 	resource, err := getResource(args)
 	if err != nil {
 		return err
 	}
 
-	if resource == "regions" {
+	if resource == RegionsArg {
 		regions := cloud.ListRegions()
 
 		var data [][]string
@@ -33,9 +51,8 @@ func RunCommand(cmd *cobra.Command, args []string) error {
 		table.SetBorder(false)
 		table.AppendBulk(data)
 		table.Render()
-	}
 
-	if resource == "services" {
+	} else if resource == ServicesArg {
 		var services []string
 		if regionParam == "" {
 			services = cloud.ListServices()
@@ -51,9 +68,8 @@ func RunCommand(cmd *cobra.Command, args []string) error {
 		table.SetBorder(false)
 		table.AppendBulk(data)
 		table.Render()
-	}
 
-	if resource == "ips" {
+	} else if resource == IpsArg {
 		var addresses []string
 		if regionParam != "" && serviceParam != "" {
 			addresses = cloud.ListAddressPrefixesByServiceAndRegion(serviceParam, regionParam)
@@ -87,9 +103,9 @@ func getResource(args []string) (resource string, err error) {
 }
 
 func getCloud(args []string) (cloud Cloud, err error) {
-	if args[0] == "aws" {
+	if args[0] == AWSArgs {
 		cloud = AWS{}
-	} else if args[0] == "azure" {
+	} else if args[0] == AzureArg {
 		cloud = Azure{}
 	} else {
 		err = errors.New("Cloud is not valid or supported")
@@ -100,4 +116,17 @@ func getCloud(args []string) (cloud Cloud, err error) {
 func getFlagString(cmd *cobra.Command, flag string) (flagValue string, err error) {
 	flagValue, err = cmd.Flags().GetString(flag)
 	return
+}
+
+func printsCloudCommands() {
+	println("Cloud Commands :")
+	println("  azure \t Retrieves Azure resources")
+	println("  aws \t\t Retrieves AWS resources ")
+}
+
+func printsResourceCommands() {
+	println("Resource supported :")
+	println("  regions \t Retrieves the list of regions")
+	println("  services \t Retrieves the list of services")
+	println("  ips \t\t Retrieves the list of IP address ranges")
 }
