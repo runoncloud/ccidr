@@ -1,6 +1,7 @@
 # ccidr
 ![build](https://github.com/runoncloud/ccidr/workflows/build/badge.svg?branch=master)
 ![release](https://github.com/runoncloud/ccidr/workflows/release/badge.svg)
+![files-update](https://github.com/runoncloud/ccidr/workflows/files-update/badge.svg)
 
 `ccidr` is a command line tool written in Go that help you get and filter Public Cloud IP address ranges.
 
@@ -74,3 +75,26 @@ Requirements:
  ```bash
  make bin        # binaries will be placed in bin/
  ```
+
+## Use ccidr as a library
+ ```go
+package main
+
+import (
+	"fmt"
+	"github.com/runoncloud/ccidr/pkg/ccidr"
+)
+
+func main() {
+	azure := ccidr.Azure{}
+	aws := ccidr.AWS{}
+
+	fmt.Println(azure.ListAddressPrefixes())
+	fmt.Println(aws.ListAddressPrefixes())
+}
+
+ ```
+
+##Source of the IP address ranges
+- AWS : https://ip-ranges.amazonaws.com/ip-ranges.json
+- Azure : https://www.microsoft.com/en-us/download/details.aspx?id=56519&WT.mc_id=rss_alldownloads_all
