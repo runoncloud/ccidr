@@ -24,8 +24,9 @@ func RunCommand(cmd *cobra.Command, args []string) error {
 
 	regionParam, _ := getFlagString(cmd, "region")
 	serviceParam, _ := getFlagString(cmd, "service")
+	remoteParam, _ := getFlagBool(cmd, "remote")
 
-	cloud, err := getCloud(args)
+	cloud, err := getCloud(args, remoteParam)
 	if err != nil {
 		return err
 	}
@@ -102,11 +103,11 @@ func getResource(args []string) (resource string, err error) {
 	return
 }
 
-func getCloud(args []string) (cloud Cloud, err error) {
+func getCloud(args []string, isRemote bool) (cloud Cloud, err error) {
 	if args[0] == AWSArgs {
-		cloud = AWS{}
+		cloud = AWS{isRemote: isRemote}
 	} else if args[0] == AzureArg {
-		cloud = Azure{}
+		cloud = Azure{isRemote: isRemote}
 	} else {
 		err = errors.New("Cloud is not valid or supported")
 	}
@@ -115,6 +116,11 @@ func getCloud(args []string) (cloud Cloud, err error) {
 
 func getFlagString(cmd *cobra.Command, flag string) (flagValue string, err error) {
 	flagValue, err = cmd.Flags().GetString(flag)
+	return
+}
+
+func getFlagBool(cmd *cobra.Command, flag string) (flagValue bool, err error) {
+	flagValue, err = cmd.Flags().GetBool(flag)
 	return
 }
 

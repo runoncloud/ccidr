@@ -49,11 +49,16 @@ func RootCmd() *cobra.Command {
 	cobra.OnInitialize(initConfig)
 
 	var region, service string
+	var remote bool
+
 	cmd.Flags().StringVarP(&region, "region", "r", "",
 		"Only selects services or ips for a specific region")
 
 	cmd.Flags().StringVarP(&service, "service", "s", "",
 		"Only selects ips for a specific service")
+
+	cmd.Flags().BoolVarP(&remote, "remote", "R", false,
+		"Fetch the values directly from the source over HTTP")
 
 	viper.SetEnvKeyReplacer(strings.NewReplacer("-", "_"))
 	return cmd

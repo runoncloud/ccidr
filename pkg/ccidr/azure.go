@@ -5,15 +5,22 @@ import (
 	_ "github.com/runoncloud/ccidr/pkg/statik"
 	"github.com/thoas/go-funk"
 	"github.com/tidwall/gjson"
+	"io/ioutil"
+	"log"
+	"net/http"
 	"sort"
 	"strings"
+	"time"
 )
 
 const (
-	AzureCloud = "AzureCloud"
+	AzureCloud   = "AzureCloud"
+	AzureJsonUrl = "https://download.microsoft.com/download/7/1/D/71D86715-5596-4529-9B13-DA13A5DE5B63/ServiceTags_Public_%s.json"
 )
 
-type Azure struct{}
+type Azure struct {
+	isRemote bool
+}
 
 var (
 	azureJSON string
@@ -21,7 +28,7 @@ var (
 
 func (a Azure) ListRegions() []string {
 	var regions []string
-	json := getAzureJsonString()
+	json := getAzureJsonString(a.isRemote)
 	queryResult := gjson.Get(json, "values.#.properties.region")
 	for _, region := range queryResult.Array() {
 		regions = append(regions, region.String())
@@ -36,7 +43,7 @@ func (a Azure) ListServices() []string {
 
 func (a Azure) ListServicesByRegion(region string) []string {
 	var services []string
-	json := getAzureJsonString()
+	json := getAzureJsonString(a.isRemote)
 
 	queryResult := gjson.Get(json,
 		fmt.Sprintf("values.#(properties.region==%s)#.name", region))
@@ -55,7 +62,7 @@ func (a Azure) ListAddressPrefixes() []string {
 
 func (a Azure) ListAddressPrefixesByService(service string) []string {
 	var addressPrefixes []string
-	json := getAzureJsonString()
+	json := getAzureJsonString(a.isRemote)
 	cidrQueryResult := gjson.Get(json, fmt.Sprintf("values.#(name==%s).properties.addressPrefixes", service))
 	for _, addressPrefix := range cidrQueryResult.Array() {
 		addressPrefixes = append(addressPrefixes, addressPrefix.String())
@@ -66,7 +73,7 @@ func (a Azure) ListAddressPrefixesByService(service string) []string {
 
 func (a Azure) ListAddressPrefixesByRegion(region string) []string {
 	var addressPrefixes []string
-	json := getAzureJsonString()
+	json := getAzureJsonString(a.isRemote)
 	regionStringQueryResult := gjson.Get(json, fmt.Sprintf("values.#(properties.region==%s)#.properties.addressPrefixes", region))
 	for _, addressPrefixList := range regionStringQueryResult.Array() {
 		for _, addressPrefix := range addressPrefixList.Array() {
@@ -79,7 +86,7 @@ func (a Azure) ListAddressPrefixesByRegion(region string) []string {
 
 func (a Azure) ListAddressPrefixesByServiceAndRegion(service string, region string) []string {
 	var addressPrefixes []string
-	json := getAzureJsonString()
+	json := getAzureJsonString(a.isRemote)
 	regionStringQueryResult := gjson.Get(json, fmt.Sprintf("values.#(properties.region==%s).name", region))
 	regionString := strings.Split(regionStringQueryResult.String(), ".")[1]
 	cidrQueryResult := gjson.Get(json, fmt.Sprintf("values.#(name==%s.%s).properties.addressPrefixes",
@@ -91,9 +98,50 @@ func (a Azure) ListAddressPrefixesByServiceAndRegion(service string, region stri
 	return addressPrefixes
 }
 
-func getAzureJsonString() string {
+func getAzureJsonString(isRemote bool) string {
 	if azureJSON == "" {
-		azureJSON = GetJsonString("/azure.json")
+		if isRemote {
+			awsJSON = getAzureRemoteJsonString()
+		} else {
+			azureJSON = GetJsonString("/azure.json")
+		}
 	}
 	return azureJSON
+}
+
+func getAzureRemoteJsonString() string {
+	lastMonday := getLastMondayDate()
+
+	if azureJSON == "" {
+		client := http.Client{Timeout: time.Second * 10}
+
+		req, err := http.NewRequest(http.MethodGet, fmt.Sprintf(AzureJsonUrl, lastMonday.Format("20060102")), nil)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		res, getErr := client.Do(req)
+		if getErr != nil {
+			log.Fatal(getErr)
+		}
+
+		if res.Body != nil {
+			defer res.Body.Close()
+		}
+
+		body, readErr := ioutil.ReadAll(res.Body)
+		if readErr != nil {
+			log.Fatal(readErr)
+		}
+		azureJSON = string(body)
+	}
+	return azureJSON
+}
+
+func getLastMondayDate() time.Time {
+	date := time.Now()
+	for date.Weekday() != time.Monday {
+		date = date.AddDate(0, 0, -1)
+	}
+	return date
 }
