@@ -10,13 +10,21 @@ Public clouds supported :
 - Azure
 - AWS
 
-The IP address ranges for each cloud are included in the binaries. A new version will be release each week with update IP address ranges.
+The IP address ranges for each cloud are included in the binaries. A new version will be release on monday each week with update IP address ranges. If you don't want to update on a weekly basis, you can use the `--remote` flag to fetch the information directly from the source : 
+
+- AWS : https://ip-ranges.amazonaws.com/ip-ranges.json
+- Azure : https://www.microsoft.com/en-us/download/details.aspx?id=56519&WT.mc_id=rss_alldownloads_all
 
 ## Examples
 
 - Prints All Azure regions
   ```bash
   ccidr azure regions
+  ```
+
+- Prints All AWS regions
+  ```bash
+  ccidr aws regions
   ```
   
 - Prints All Azure services
@@ -27,6 +35,11 @@ The IP address ranges for each cloud are included in the binaries. A new version
 - Prints All Azure IP address ranges
   ```bash
   ccidr azure ips
+  ```
+  
+- Prints All AWS IP address ranges
+  ```bash
+  ccidr aws ips
   ```
 
 - Prints All Azure IP address ranges for a specific region
@@ -42,6 +55,11 @@ The IP address ranges for each cloud are included in the binaries. A new version
 - Prints All Azure IP address ranges for a specific service and region
   ```bash
   ccidr azure ips -s AppService -r eastus
+  ```
+
+- Prints All Azure IP address ranges for a specific service and region using the remote source of data
+  ```bash
+  ccidr azure ips -s AppService -r eastus --remote
   ```
 ## Installation
 
@@ -87,14 +105,9 @@ import (
 
 func main() {
 	azure := ccidr.Azure{}
-	aws := ccidr.AWS{}
-
+	aws := ccidr.AWS{isRemote: true}
+    
 	fmt.Println(azure.ListAddressPrefixes())
 	fmt.Println(aws.ListAddressPrefixes())
 }
  ```
-
-## Source of the IP address ranges
-
-- AWS : https://ip-ranges.amazonaws.com/ip-ranges.json
-- Azure : https://www.microsoft.com/en-us/download/details.aspx?id=56519&WT.mc_id=rss_alldownloads_all
