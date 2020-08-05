@@ -15,6 +15,10 @@ The IP address ranges for each cloud are included in the binaries. A new version
 - AWS : https://ip-ranges.amazonaws.com/ip-ranges.json
 - Azure : https://www.microsoft.com/en-us/download/details.aspx?id=56519&WT.mc_id=rss_alldownloads_all
 
+## Demo
+
+<p align="center"><img src="/doc/ccidr.gif?raw=true"/></p>
+
 ## Examples
 
 - Prints All Azure regions
