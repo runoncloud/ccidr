@@ -29,10 +29,11 @@ jobs:
         run: |
           export PATH=${PATH}:`go env GOPATH`/bin
           go get github.com/rakyll/statik
-          statik -src=files -dest=pkg/ccidr -f
+          statik -src=files -dest=pkg -f
       - name: Generate tag name
         id: gentag
         run: |
+          git fetch --unshallow --tags
           lastTag=$(git tag | sort -V | tail -1)
           tagName=$(echo $lastTag  | awk -F. -v OFS=. '{$NF++;print}')
           echo "::set-output name=tag_name::$tagName"
