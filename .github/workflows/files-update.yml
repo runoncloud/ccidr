@@ -16,7 +16,6 @@ jobs:
         run: |
           wget 'https://ip-ranges.amazonaws.com/ip-ranges.json' -N -O files/aws.json
       - name: Download Azure JSON
-        continue-on-error: true
         run: |
           today='date +%u'
           if [ "$today" == "1" ]
@@ -25,8 +24,10 @@ jobs:
           else
             monday=$(date -dlast-monday +%Y%m%d)
           fi
-          URL="https://download.microsoft.com/download/7/1/D/71D86715-5596-4529-9B13-DA13A5DE5B63/ServiceTags_Public_$monday.json"
-          wget "$URL" -N -O files/azure.json
+          url="https://download.microsoft.com/download/7/1/D/71D86715-5596-4529-9B13-DA13A5DE5B63/ServiceTags_Public_$monday.json"
+          if curl --output /dev/null --silent --head --fail "$url"; then 
+            wget "$url" -N -O files/azure.json
+          fi
       - name: Generate statik file
         run: |
           export PATH=${PATH}:`go env GOPATH`/bin
