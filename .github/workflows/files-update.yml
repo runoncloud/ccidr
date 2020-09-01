@@ -30,13 +30,6 @@ jobs:
           export PATH=${PATH}:`go env GOPATH`/bin
           go get github.com/rakyll/statik
           statik -src=files -dest=pkg -f
-      - name: Generate tag name
-        id: gentag
-        run: |
-          git fetch --unshallow --tags
-          lastTag=$(git tag | sort -V | tail -1)
-          tagName=$(echo $lastTag  | awk -F. -v OFS=. '{$NF++;print}')
-          echo "::set-output name=tag_name::$tagName"
       - name: Commit new files
         uses: EndBug/add-and-commit@v4
         with:
@@ -46,4 +39,13 @@ jobs:
           message: 'Update Public Cloud JSON files'
           tag: ${{ steps.gentag.outputs.tag_name }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
+      - name: Create Tag
+        id: gentag
+        run: |
+          git fetch --unshallow --tags
+          lastTag=$(git tag | sort -V | tail -1)
+          tagName=$(echo $lastTag  | awk -F. -v OFS=. '{$NF++;print}')
+          printf -v date '%(%Y-%m-%d)T\n' -1
+          git tag -m "File Update : $date" $tagName
+          git push origin $tagName
