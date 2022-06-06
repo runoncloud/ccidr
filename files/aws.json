@@ -1,6 +1,6 @@
 {
-  "syncToken": "1653897207",
-  "createDate": "2022-05-30-07-53-27",
+  "syncToken": "1654474985",
+  "createDate": "2022-06-06-00-23-05",
   "prefixes": [
     {
       "ip_prefix": "3.5.140.0/22",
@@ -2385,6 +2385,12 @@
       "network_border_group": "me-central-1"
     },
     {
+      "ip_prefix": "15.177.94.0/24",
+      "region": "ap-south-2",
+      "service": "AMAZON",
+      "network_border_group": "ap-south-2"
+    },
+    {
       "ip_prefix": "43.224.76.188/30",
       "region": "us-east-1",
       "service": "AMAZON",
@@ -4513,6 +4519,12 @@
       "region": "eu-west-1",
       "service": "AMAZON",
       "network_border_group": "eu-west-1"
+    },
+    {
+      "ip_prefix": "15.177.99.0/24",
+      "region": "il-central-1",
+      "service": "AMAZON",
+      "network_border_group": "il-central-1"
     },
     {
       "ip_prefix": "15.193.5.0/24",
@@ -12153,6 +12165,12 @@
       "network_border_group": "me-south-1"
     },
     {
+      "ip_prefix": "15.230.14.248/31",
+      "region": "us-east-1",
+      "service": "AMAZON",
+      "network_border_group": "us-east-1"
+    },
+    {
       "ip_prefix": "15.230.39.74/31",
       "region": "us-east-2",
       "service": "AMAZON",
@@ -13585,6 +13603,12 @@
       "region": "eu-central-1",
       "service": "AMAZON",
       "network_border_group": "eu-central-1"
+    },
+    {
+      "ip_prefix": "15.177.97.0/24",
+      "region": "eu-south-2",
+      "service": "AMAZON",
+      "network_border_group": "eu-south-2"
     },
     {
       "ip_prefix": "15.230.39.216/31",
@@ -15717,6 +15741,12 @@
       "network_border_group": "ap-northeast-1"
     },
     {
+      "ip_prefix": "13.34.17.0/27",
+      "region": "ap-southeast-3",
+      "service": "AMAZON",
+      "network_border_group": "ap-southeast-3"
+    },
+    {
       "ip_prefix": "13.34.19.224/27",
       "region": "eu-west-1",
       "service": "AMAZON",
@@ -16261,6 +16291,12 @@
       "region": "me-central-1",
       "service": "AMAZON",
       "network_border_group": "me-central-1"
+    },
+    {
+      "ip_prefix": "15.230.14.22/31",
+      "region": "us-east-1",
+      "service": "AMAZON",
+      "network_border_group": "us-east-1"
     },
     {
       "ip_prefix": "15.230.131.0/24",
@@ -16909,6 +16945,12 @@
       "region": "ca-central-1",
       "service": "AMAZON",
       "network_border_group": "ca-central-1"
+    },
+    {
+      "ip_prefix": "13.34.17.32/27",
+      "region": "ap-southeast-3",
+      "service": "AMAZON",
+      "network_border_group": "ap-southeast-3"
     },
     {
       "ip_prefix": "13.34.70.192/27",
@@ -18663,6 +18705,12 @@
       "network_border_group": "us-east-1"
     },
     {
+      "ip_prefix": "15.177.98.0/24",
+      "region": "eu-central-2",
+      "service": "AMAZON",
+      "network_border_group": "eu-central-2"
+    },
+    {
       "ip_prefix": "15.200.0.0/16",
       "region": "us-gov-west-1",
       "service": "AMAZON",
@@ -19555,12 +19603,6 @@
       "region": "eu-west-1",
       "service": "AMAZON",
       "network_border_group": "eu-west-1"
-    },
-    {
-      "ip_prefix": "13.34.17.24/29",
-      "region": "ap-southeast-3",
-      "service": "AMAZON",
-      "network_border_group": "ap-southeast-3"
     },
     {
       "ip_prefix": "52.46.188.56/30",
@@ -21777,6 +21819,12 @@
       "network_border_group": "sa-east-1"
     },
     {
+      "ip_prefix": "15.177.96.0/24",
+      "region": "ap-southeast-4",
+      "service": "AMAZON",
+      "network_border_group": "ap-southeast-4"
+    },
+    {
       "ip_prefix": "15.181.251.0/24",
       "region": "us-west-2",
       "service": "AMAZON",
@@ -23131,6 +23179,12 @@
       "region": "eu-west-2",
       "service": "AMAZON",
       "network_border_group": "eu-west-2"
+    },
+    {
+      "ip_prefix": "15.177.93.0/24",
+      "region": "me-central-1",
+      "service": "AMAZON",
+      "network_border_group": "me-central-1"
     },
     {
       "ip_prefix": "15.181.243.0/24",
@@ -26481,6 +26535,12 @@
       "network_border_group": "eu-west-3"
     },
     {
+      "ip_prefix": "15.177.94.0/24",
+      "region": "ap-south-2",
+      "service": "EC2",
+      "network_border_group": "ap-south-2"
+    },
+    {
       "ip_prefix": "52.95.255.16/28",
       "region": "ap-southeast-2",
       "service": "EC2",
@@ -26959,6 +27019,12 @@
       "region": "ap-southeast-2",
       "service": "EC2",
       "network_border_group": "ap-southeast-2"
+    },
+    {
+      "ip_prefix": "15.177.99.0/24",
+      "region": "il-central-1",
+      "service": "EC2",
+      "network_border_group": "il-central-1"
     },
     {
       "ip_prefix": "15.193.5.0/24",
@@ -28827,6 +28893,12 @@
       "network_border_group": "us-gov-east-1"
     },
     {
+      "ip_prefix": "15.177.97.0/24",
+      "region": "eu-south-2",
+      "service": "EC2",
+      "network_border_group": "eu-south-2"
+    },
+    {
       "ip_prefix": "35.71.68.0/22",
       "region": "us-east-1",
       "service": "EC2",
@@ -29913,6 +29985,12 @@
       "network_border_group": "cn-north-1"
     },
     {
+      "ip_prefix": "15.177.98.0/24",
+      "region": "eu-central-2",
+      "service": "EC2",
+      "network_border_group": "eu-central-2"
+    },
+    {
       "ip_prefix": "15.200.0.0/16",
       "region": "us-gov-west-1",
       "service": "EC2",
@@ -30525,6 +30603,12 @@
       "network_border_group": "eu-west-2"
     },
     {
+      "ip_prefix": "15.177.96.0/24",
+      "region": "ap-southeast-4",
+      "service": "EC2",
+      "network_border_group": "ap-southeast-4"
+    },
+    {
       "ip_prefix": "15.181.251.0/24",
       "region": "us-west-2",
       "service": "EC2",
@@ -30805,6 +30889,12 @@
       "region": "sa-east-1",
       "service": "EC2",
       "network_border_group": "sa-east-1"
+    },
+    {
+      "ip_prefix": "15.177.93.0/24",
+      "region": "me-central-1",
+      "service": "EC2",
+      "network_border_group": "me-central-1"
     },
     {
       "ip_prefix": "15.181.243.0/24",
@@ -31629,6 +31719,12 @@
       "network_border_group": "eu-west-1"
     },
     {
+      "ip_prefix": "13.248.110.0/24",
+      "region": "ap-southeast-3",
+      "service": "GLOBALACCELERATOR",
+      "network_border_group": "ap-southeast-3"
+    },
+    {
       "ip_prefix": "15.197.32.0/23",
       "region": "GLOBAL",
       "service": "GLOBALACCELERATOR",
@@ -32121,10 +32217,22 @@
       "network_border_group": "ap-southeast-1"
     },
     {
+      "ip_prefix": "15.177.94.0/24",
+      "region": "ap-south-2",
+      "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
+      "network_border_group": "ap-south-2"
+    },
+    {
       "ip_prefix": "15.177.76.0/24",
       "region": "ap-northeast-2",
       "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
       "network_border_group": "ap-northeast-2"
+    },
+    {
+      "ip_prefix": "15.177.99.0/24",
+      "region": "il-central-1",
+      "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
+      "network_border_group": "il-central-1"
     },
     {
       "ip_prefix": "15.177.86.0/24",
@@ -32181,6 +32289,12 @@
       "network_border_group": "sa-east-1"
     },
     {
+      "ip_prefix": "15.177.97.0/24",
+      "region": "eu-south-2",
+      "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
+      "network_border_group": "eu-south-2"
+    },
+    {
       "ip_prefix": "15.177.64.0/23",
       "region": "us-east-1",
       "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
@@ -32217,6 +32331,12 @@
       "network_border_group": "ca-central-1"
     },
     {
+      "ip_prefix": "15.177.98.0/24",
+      "region": "eu-central-2",
+      "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
+      "network_border_group": "eu-central-2"
+    },
+    {
       "ip_prefix": "15.177.80.0/24",
       "region": "us-west-2",
       "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
@@ -32227,6 +32347,12 @@
       "region": "eu-west-3",
       "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
       "network_border_group": "eu-west-3"
+    },
+    {
+      "ip_prefix": "15.177.96.0/24",
+      "region": "ap-southeast-4",
+      "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
+      "network_border_group": "ap-southeast-4"
     },
     {
       "ip_prefix": "15.177.87.0/24",
@@ -32245,6 +32371,12 @@
       "region": "af-south-1",
       "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
       "network_border_group": "af-south-1"
+    },
+    {
+      "ip_prefix": "15.177.93.0/24",
+      "region": "me-central-1",
+      "service": "ROUTE53_HEALTHCHECKS_PUBLISHING",
+      "network_border_group": "me-central-1"
     },
     {
       "ip_prefix": "15.177.92.0/24",
